@@ -1,0 +1,35 @@
+﻿<Window x:Class="LibraryWPF.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:LibraryWPF"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800">
+    <Grid>
+        <StackPanel Orientation="Vertical" Margin="200 0 200 0">
+                            <TextBlock
+                  Style="{StaticResource MaterialDesignHeadline3TextBlock}"
+                  Text="LOGIN" TextAlignment="Center"/>
+            <TextBox
+                  VerticalAlignment="Top"
+                  materialDesign:HintAssist.Hint="Email"
+                  Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 30 0 30">
+            </TextBox>
+
+            <PasswordBox
+                VerticalAlignment="Top"
+                materialDesign:HintAssist.Hint="Password"
+                IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordBoxEnabledComboBox}"
+                Style="{StaticResource MaterialDesignOutlinedPasswordBox}"  Margin="0 30 0 30"/>
+            
+            <Button
+                 Content="Login"
+                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                  ToolTip="Resource name: MaterialDesignRaisedLightButton" Height="33" Margin="0 30 0 30" Click="Button_Click"/> 
+            
+        </StackPanel>
+        
+    </Grid>
+</Window>

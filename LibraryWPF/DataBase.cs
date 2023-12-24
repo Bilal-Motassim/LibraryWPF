@@ -12,11 +12,11 @@ namespace LibraryWPF
     {
         private static string Host = "localhost";
         private static string User = "postgres";
-        private static string DBname = "postgres";
-        private static string Password = "emsi";
+        private static string DBname = "dbtest";
+        private static string Password = "123";
         private static string Port = "5432";
 
-        static void Main(string[] args)
+        public static void Start()
         {
             string connString =
                 String.Format(
@@ -32,11 +32,11 @@ namespace LibraryWPF
                 Console.Out.WriteLine("Opening connection");
                 conn.Open();
 
-                CreateTable(conn, "user", "CREATE TABLE IF NOT EXISTS \"user\" (id_U SERIAL PRIMARY KEY, FirstName VARCHAR(255), LastName VARCHAR(255), Email VARCHAR(255), PasswordHash VARCHAR(255), isAdmin BOOLEAN)");
+                CreateTable(conn, "user2", "CREATE TABLE IF NOT EXISTS \"user2\" (id_U SERIAL PRIMARY KEY, FirstName VARCHAR(255), LastName VARCHAR(255), Email VARCHAR(255), PasswordHash VARCHAR(255), isAdmin BOOLEAN)");
 
                 CreateTable(conn, "book", "CREATE TABLE IF NOT EXISTS book (id_B SERIAL PRIMARY KEY, Title VARCHAR(255), Genre VARCHAR(255), Available BOOLEAN)");
 
-                CreateTable(conn, "reservation", "CREATE TABLE IF NOT EXISTS reservation (DateRes DATE, Duration INT, user_id INT REFERENCES \"user\"(id_U), book_id INT REFERENCES book(id_B))");
+                CreateTable(conn, "reservation", "CREATE TABLE IF NOT EXISTS reservation (DateRes DATE, Duration INT, user_id INT REFERENCES \"user2\"(id_U), book_id INT REFERENCES book(id_B))");
             }
 
             Console.WriteLine("Press RETURN to exit");

@@ -9,9 +9,120 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Button
-          Content="_LIGHT"
-          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
-          ToolTip="Resource name: MaterialDesignRaisedLightButton" />
+        <materialDesign:Card>
+            <TabControl
+                materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                materialDesign:NavigationRailAssist.SelectionCornerRadius="50 10 10 10"
+                materialDesign:NavigationRailAssist.ShowSelectionBackground="True"
+                Style="{StaticResource MaterialDesignNavigationRailTabControl}"
+                TabStripPlacement="Top">
+                <materialDesign:NavigationRailAssist.FloatingContent>
+                    <Button
+                        Margin="8"
+                        Style="{StaticResource MaterialDesignFloatingActionSecondaryButton}">
+                        <materialDesign:PackIcon
+                              Width="24"
+                              Height="24"
+                              Kind="Plus" />
+                    </Button>
+                </materialDesign:NavigationRailAssist.FloatingContent>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                              Width="auto"
+                              Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Folder" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="All Files" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 1 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+        <Run
+          FontStyle="Italic">
+        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
+      </Run>
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                              Width="auto"
+                              Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="ClockOutline" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Recent" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 2 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+        <Run
+          FontStyle="Italic">
+        Praesent sed dui arcu. Vivamus porta auctor sagittis
+      </Run>
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                              Width="auto"
+                              Height="auto">
+                            <materialDesign:PackIcon
+                                Width="24"
+                                Height="24"
+                                HorizontalAlignment="Center"
+                                Kind="Images" />
+                            <TextBlock
+                                HorizontalAlignment="Center"
+                                Text="Photos" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 3 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+                    </TextBlock>
+                </TabItem>
+                <TabItem>
+                    <TabItem.Header>
+                        <StackPanel
+                          Width="auto"
+                          Height="auto">
+                            <materialDesign:PackIcon
+                            Width="24"
+                            Height="24"
+                            HorizontalAlignment="Center"
+                            Kind="MusicBoxMultiple" />
+                            <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="Sounds" />
+                        </StackPanel>
+                    </TabItem.Header>
+                    <TextBlock>
+        <Run
+          Text="tab 4 content. Default look and behaviors." />
+        <LineBreak />
+        <LineBreak />
+                    </TextBlock>
+                </TabItem>
+            </TabControl>
+        </materialDesign:Card>
     </Grid>
 </Window>
