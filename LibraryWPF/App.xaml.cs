@@ -10,5 +10,4 @@ namespace LibraryWPF
     public partial class App : Application
     {
     }
-
 }

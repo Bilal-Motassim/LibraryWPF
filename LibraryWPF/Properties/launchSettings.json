@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "LibraryWPF": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "cnxstring": "Host=localhost;Port=5432;Database=dbtest;Username=postgres;Password=123;"
+      }
+    }
+  }
+}

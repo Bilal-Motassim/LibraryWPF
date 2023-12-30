@@ -9,7 +9,7 @@
         Title="Login" Height="450" Width="800">
     <Grid>
         <StackPanel Orientation="Vertical" Margin="200 0 200 0">
-                            <TextBlock
+            <TextBlock
                   Style="{StaticResource MaterialDesignHeadline3TextBlock}"
                   Text="LOGIN" TextAlignment="Center"/>
             <TextBox

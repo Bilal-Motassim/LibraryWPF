@@ -15,19 +15,20 @@ using System.Windows.Shapes;
 namespace LibraryWPF
 {
     /// <summary>
-    /// Interaction logic for Login.xaml
+    /// Interaction logic for DeleteDialog.xaml
     /// </summary>
-    public partial class Login : Window
+    public partial class DeleteDialog : Window
     {
-        public Login()
+        private string title;
+        public DeleteDialog(string title)
         {
             InitializeComponent();
+            this.title = title;
+            titletxt.Text = title;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow m = new();
-            m.Show();
             this.Close();
         }
     }
