@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace LibraryWPF.Migrations
 {
     [DbContext(typeof(LibraryContext))]
-    [Migration("20231230091017_InitialMigration")]
+    [Migration("20240101094858_InitialMigration")]
     partial class InitialMigration
     {
         /// <inheritdoc />
@@ -34,6 +34,10 @@ namespace LibraryWPF.Migrations
 
                     b.Property<bool>("Available")
                         .HasColumnType("boolean");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<string>("Genre")
                         .IsRequired()

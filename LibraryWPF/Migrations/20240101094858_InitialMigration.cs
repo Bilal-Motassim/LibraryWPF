@@ -20,7 +20,8 @@ namespace LibraryWPF.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     Genre = table.Column<string>(type: "text", nullable: false),
                     Available = table.Column<bool>(type: "boolean", nullable: false),
-                    Image = table.Column<byte[]>(type: "bytea", nullable: false)
+                    Image = table.Column<byte[]>(type: "bytea", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {

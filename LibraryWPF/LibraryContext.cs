@@ -13,7 +13,7 @@ namespace LibraryWPF
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseNpgsql(Environment.GetEnvironmentVariable("cnxstring"));
+            optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Database=dbtest;Username=postgres;Password=123;");
         }
     }
 }

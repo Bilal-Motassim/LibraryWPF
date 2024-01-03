@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace LibraryWPF
 {
-    internal class Book
+    public class Book
     {
         [Key]
         [Required]
@@ -23,10 +23,13 @@ namespace LibraryWPF
         [Required]
         public string Genre { get; set; }
 
-        [Required]
-        public bool Available { get; set; }
+        public bool Available { get; set; } = true;
 
         [Required]
         public byte[] Image { get; set; }
+
+        [Required]
+        public string Description { get; set; }
+
     }
 }

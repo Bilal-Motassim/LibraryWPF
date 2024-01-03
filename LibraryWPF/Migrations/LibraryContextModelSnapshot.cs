@@ -32,6 +32,10 @@ namespace LibraryWPF.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("text");

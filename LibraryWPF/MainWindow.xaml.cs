@@ -32,12 +32,12 @@ namespace LibraryWPF
             theme.SetPrimaryColor(System.Windows.Media.Color.FromArgb(255, 125, 10, 10));
             palette.SetTheme(theme);
 
-            string imagePath = @"C:\Users\PC\Desktop\book.jpg";
+            //string imagePath = @"C:\Users\PC\Desktop\book.jpg";
 
-            byte[] imageBytes = ImageToByteArray(imagePath);
+            //byte[] imageBytes = ImageToByteArray(imagePath);
 
 
-            //dbContext.Database.EnsureCreated();
+            dbContext.Database.EnsureCreated();
 
             //Book book = new() { Title = "title22", Genre = "gerneee", Image = imageBytes, Available = true };
             //dbContext.Books.Add(book);
@@ -50,17 +50,7 @@ namespace LibraryWPF
 
 
         }
-        static byte[] ImageToByteArray(string imagePath)
-        {
-            using (FileStream fileStream = new FileStream(imagePath, FileMode.Open, FileAccess.Read))
-            {
-                using (MemoryStream memoryStream = new MemoryStream())
-                {
-                    fileStream.CopyTo(memoryStream);
-                    return memoryStream.ToArray();
-                }
-            }
-        }
+        
 
         private void Editbook(object sender, RoutedEventArgs e)
         {
@@ -76,6 +66,28 @@ namespace LibraryWPF
             DeleteDialog dd = new DeleteDialog(book.Title);
             dd.ShowDialog();
             
+        }
+
+        private void addBook_Click(object sender, RoutedEventArgs e)
+        {
+            Addbook ab = new();
+            ab.ShowDialog();
+            Book book = ab.getBook();
+            if(book == null)
+            {
+                MessageBox.Show("Error");
+                return;
+            }
+            dbContext.Books.Add(book);
+            int res = dbContext.SaveChanges();
+            if (res == 1)
+            {
+                MessageBox.Show("Book added", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error2");
+            }
         }
     }
 }
