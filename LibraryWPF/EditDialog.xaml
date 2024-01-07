@@ -1,0 +1,24 @@
+﻿<Window x:Class="LibraryWPF.EditBookDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:LibraryWPF"
+        mc:Ignorable="d"
+        Title="EditBookDialog" Height="400" Width="600">
+    <Grid>
+        <StackPanel Margin="20">
+            <TextBlock Text="Edit Book Information" FontSize="20" FontWeight="Bold" Margin="0 0 0 20" HorizontalAlignment="Center"/>
+
+            <!-- Input controls for modifying book information -->
+            <TextBox x:Name="titleTextBox" Margin="0 0 0 10" materialDesign:HintAssist.Hint="Title" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox x:Name="genreTextBox" Margin="0 0 0 10" materialDesign:HintAssist.Hint="Genre" Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+            <TextBox x:Name="descriptionTextBox" Margin="0 0 0 10" materialDesign:HintAssist.Hint="Description" Style="{StaticResource MaterialDesignOutlinedTextBox}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"/>
+
+            <!-- Add other input controls as needed -->
+
+            <Button Content="Save Changes" Width="120" Height="30" HorizontalAlignment="Center" Click="SaveChanges_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

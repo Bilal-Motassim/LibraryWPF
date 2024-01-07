@@ -1,0 +1,16 @@
+﻿<Window x:Class="LibraryWPF.DeleteDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:LibraryWPF"
+        mc:Ignorable="d"
+        Title="DeleteDialog" Height="300" Width="500">
+    <Grid Height="290" VerticalAlignment="Top" HorizontalAlignment="Center" Width="500">
+        <TextBlock x:Name="titletxt" Margin="42,35,42,183" FontSize="40"></TextBlock>
+        <Button Margin="42,142,339,110" Click="Button_Clickss">Yes</Button>
+        <Button Margin="269,142,116,110" Click="Button_no">Noo</Button>
+
+    </Grid>
+</Window>
