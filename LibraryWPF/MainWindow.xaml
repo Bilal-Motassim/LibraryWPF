@@ -26,22 +26,49 @@
                                 Width="24"
                                 Height="24"
                                 HorizontalAlignment="Center"
-                                Kind="Folder" />
+                                Kind="Account" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="All Files" />
+                                Text="Accounts" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-        <Run
-          Text="tab 1 content. Default look and behaviors." />
-        <LineBreak />
-        <LineBreak />
-        <Run
-          FontStyle="Italic">
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...
-      </Run>
-                    </TextBlock>
+                    <DataGrid x:Name="griduserss" SelectionMode="Extended" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Password" Binding="{Binding Password}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="isAdmin" Binding="{Binding IsAdmin}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Action">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="20">
+                                            <Button
+   
+              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+              Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+              ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+                Margin="0 0 10 0 " Click="Edituser">
+                                                <materialDesign:PackIcon Kind="TextBoxEdit"/>
+                                            </Button>
+                                            <Button
+          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+          Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+          ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+          Click="Deleteuser">
+                                                <materialDesign:PackIcon Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    
+                    
+                    
+                    
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -52,10 +79,10 @@
                                 Width="24"
                                 Height="24"
                                 HorizontalAlignment="Center"
-                                Kind="ClockOutline" />
+                                Kind="Book" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="Recent" />
+                                Text="Books" />
                         </StackPanel>
                     </TabItem.Header>
 
@@ -65,148 +92,12 @@
 
 
 
-                    <!--<DataGrid
-                          AutoGenerateColumns="False"
-                          CanUserAddRows="False"
-                          HeadersVisibility="All"
-                          ItemsSource="{Binding Items1}"
-                          SelectionUnit="{Binding ElementName=selectionUnitComboBox, Path=SelectedValue}">
-                        <DataGrid.Columns>
-                            -->
-                    <!-- by default a DataGridCheckBoxColumn will have the MaterialDesignDataGridCheckBoxColumnStyle and MaterialDesignDataGridCheckBoxColumnEditingStyle applied. See DataGridAssist.ApplyMaterialDesignColumnStyles attached property -->
-                    <!--
-                            <DataGridCheckBoxColumn
-                                Binding="{Binding IsSelected, UpdateSourceTrigger=PropertyChanged}">
-                                <DataGridCheckBoxColumn.Header>
-                                    <Border
-                                          Background="Transparent">
-                                        <CheckBox
-                                             IsChecked="{Binding DataContext.IsAllItems1Selected}" />
-                                    </Border>
-                                </DataGridCheckBoxColumn.Header>
-                                <DataGridCheckBoxColumn.HeaderStyle>
-                                    <Style
-                                          TargetType="{x:Type DataGridColumnHeader}"
-                                          BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                        <Setter
-                                            Property="HorizontalContentAlignment"
-                                            Value="Center" />
-                                    </Style>
-                                </DataGridCheckBoxColumn.HeaderStyle>
-                            </DataGridCheckBoxColumn>
-                            -->
-                    <!-- by default a DataGridTextColumn will have the MaterialDesignDataGridTextColumnStyle and MaterialDesignDataGridTextColumnEditingStyle applied. See DataGridAssist.ApplyMaterialDesignColumnStyles attached property -->
-                    <!--
-                            <DataGridTextColumn
-                                  Binding="{Binding Code}"
-                                  Header="Code" />
-                            -->
-                    <!-- if you want to use the pop up style (MaterialDesignDataGridTextColumnPopupEditingStyle), you must use MaterialDataGridTextColumn -->
-                    <!--
-                            <materialDesign:DataGridTextColumn
-                                  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
-                                  ElementStyle="{StaticResource MaterialDesignDataGridTextColumnStyle}"
-                                  Header="Name">
-                                <materialDesign:DataGridTextColumn.Binding>
-                                    <Binding
-                                             Path="Name">
-                                    </Binding>
-                                </materialDesign:DataGridTextColumn.Binding>
-                            </materialDesign:DataGridTextColumn>
-                            -->
-                    <!-- set a max length to get an indicator in the editor -->
-                    <!--
-                            <DataGridTextColumn
-                                      Header="Description">
-                                <DataGridTextColumn.Binding>
-                                    <Binding
-                                        Path="Description">
-                                    </Binding>
-                                </DataGridTextColumn.Binding>
-                            </DataGridTextColumn>
-                            <materialDesign:DataGridTextColumn
-                                  Width="120"
-                                  Binding="{Binding Numeric}"
-                                  EditingElementStyle="{StaticResource MaterialDesignDataGridTextColumnPopupEditingStyle}"
-                                  Header="Number with long header">
-                                <DataGridTextColumn.HeaderStyle>
-                                    <Style
-                                          TargetType="{x:Type DataGridColumnHeader}"
-                                          BasedOn="{StaticResource MaterialDesignDataGridColumnHeader}">
-                                        <Setter
-                                            Property="ContentTemplate">
-                                            <Setter.Value>
-                                                <DataTemplate>
-                                                    <TextBlock
-                                                      Text="{Binding}"
-                                                      TextAlignment="Right"
-                                                      TextWrapping="Wrap" />
-                                                </DataTemplate>
-                                            </Setter.Value>
-                                        </Setter>
-                                        <Setter
-                                            Property="HorizontalContentAlignment"
-                                            Value="Right" />
-                                    </Style>
-                                </DataGridTextColumn.HeaderStyle>
-                                <DataGridTextColumn.ElementStyle>
-                                    <Style
-                                          TargetType="{x:Type TextBlock}"
-                                          BasedOn="{StaticResource MaterialDesignDataGridTextColumnStyle}">
-                                        <Setter
-                                                Property="HorizontalAlignment"
-                                                Value="Right" />
-                                    </Style>
-                                </DataGridTextColumn.ElementStyle>
-                            </materialDesign:DataGridTextColumn>
-                            -->
-                    <!-- use custom combo box column to get better combos. Use ItemsSourceBinding as your binding template to be applied to each combo -->
-                    <!--
-                            <materialDesign:DataGridComboBoxColumn
-                                  Width="100"
-                                  Header="Food with long header"
-                                  IsEditable="True"
-                                  ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Foods}"
-                                  SelectedValueBinding="{Binding Food}">
-                                -->
-                    <!--Setting the editing element style allows access to all of the combo box's properties
-                      <materialDesign:MaterialDataGridComboBoxColumn.EditingElementStyle>
-                          <Style TargetType="ComboBox" BasedOn="{StaticResource {ComponentResourceKey TypeInTargetAssembly={x:Type ComboBox}, ResourceId=MaterialDataGridComboBoxColumnEditingStyle}}" >
-                              <Setter Property="IsEditable" Value="True" />
-                          </Style>
-                      </materialDesign:MaterialDataGridComboBoxColumn.EditingElementStyle>
-          -->
-                    <!--
-                            </materialDesign:DataGridComboBoxColumn>
-                            <materialDesign:DataGridComboBoxColumn
-                                      Header="ComboBox with long list"
-                                      ItemsSourceBinding="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type DataGrid}}, Path=DataContext.Files}"
-                                      SelectedValueBinding="{Binding Files}" />
-                            <DataGridTemplateColumn
-                                     Header="Template Column">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock
-                                            FontSize="14"
-                                            FontStyle="Italic"
-                                            Text="{Binding Name}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                                <DataGridTemplateColumn.CellEditingTemplate>
-                                    <DataTemplate>
-                                        <TextBox
-                                            Foreground="{DynamicResource SecondaryHueMidBrush}"
-                                            Text="{Binding Name}" />
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellEditingTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
+                   
                         
                         
                         
                         
-                        
-                    </DataGrid>-->
+      
                     <StackPanel Orientation="Vertical">
                         <Button x:Name="addBook" Margin="600 5 0 5" Width="112" Height="36" Click="addBook_Click">
                             <StackPanel Orientation="Horizontal">
@@ -269,37 +160,15 @@
                                 Width="24"
                                 Height="24"
                                 HorizontalAlignment="Center"
-                                Kind="Images" />
+                                Kind="FileDocument" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="Photos" />
+                                Text="Reservations" />
                         </StackPanel>
                     </TabItem.Header>
                     <TextBlock>
         <Run
           Text="tab 3 content. Default look and behaviors." />
-        <LineBreak />
-        <LineBreak />
-                    </TextBlock>
-                </TabItem>
-                <TabItem>
-                    <TabItem.Header>
-                        <StackPanel
-                          Width="auto"
-                          Height="auto">
-                            <materialDesign:PackIcon
-                            Width="24"
-                            Height="24"
-                            HorizontalAlignment="Center"
-                            Kind="MusicBoxMultiple" />
-                            <TextBlock
-                            HorizontalAlignment="Center"
-                            Text="Sounds" />
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TextBlock>
-        <Run
-          Text="tab 4 content. Default look and behaviors." />
         <LineBreak />
         <LineBreak />
                     </TextBlock>

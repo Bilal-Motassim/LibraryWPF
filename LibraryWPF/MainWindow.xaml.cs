@@ -43,10 +43,14 @@ namespace LibraryWPF
             //dbContext.Books.Add(book);
             //dbContext.SaveChanges();
 
+            
+
 
             List<Book> Books = dbContext.Books.ToList();
+            List<User> users = dbContext.Users.ToList();
 
             griduser.ItemsSource = Books;
+            griduserss.ItemsSource = users;
 
 
         }
@@ -88,6 +92,17 @@ namespace LibraryWPF
             {
                 MessageBox.Show("Error2");
             }
+        }
+
+
+        private void Edituser(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Deleteuser(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

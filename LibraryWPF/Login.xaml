@@ -12,13 +12,13 @@
             <TextBlock
                   Style="{StaticResource MaterialDesignHeadline3TextBlock}"
                   Text="LOGIN" TextAlignment="Center"/>
-            <TextBox
+            <TextBox x:Name="email"
                   VerticalAlignment="Top"
                   materialDesign:HintAssist.Hint="Email"
                   Style="{StaticResource MaterialDesignOutlinedTextBox}" Margin="0 30 0 30">
             </TextBox>
 
-            <PasswordBox
+            <PasswordBox x:Name="passw"
                 VerticalAlignment="Top"
                 materialDesign:HintAssist.Hint="Password"
                 IsEnabled="{Binding Path=IsChecked, ElementName=MaterialDesignOutlinedPasswordBoxEnabledComboBox}"
