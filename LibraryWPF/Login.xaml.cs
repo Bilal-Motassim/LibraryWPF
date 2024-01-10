@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NLog;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,6 +25,7 @@ namespace LibraryWPF
     public partial class Login : Window
     {
         private readonly LibraryContext dbContext = new();
+        private Logger logger = LogManager.Setup().GetCurrentClassLogger();
         public Login()
         {
             InitializeComponent();
@@ -55,19 +57,20 @@ namespace LibraryWPF
                 {
                     if (existingUser.IsAdmin)
                     {
-                        MainWindow m = new();
+                        MainWindow m = new(existingUser.Email);
                         m.Show();
+                        logger.Info($"{existingUser.Email} logged in.");
                         this.Close();
                         return;
                     }
                     else
                     {
+                        logger.Info($"{existingUser.Email} tried to log in but he is not an admin");
                         MessageBox.Show("Access denied", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                         return;
                     }
                 }
             }
-
             MessageBox.Show("Invalid email or password", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 

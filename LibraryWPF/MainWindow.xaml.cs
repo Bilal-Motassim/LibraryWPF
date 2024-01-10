@@ -20,6 +20,7 @@ using System.Globalization;
 using WinFrom = System.Windows.Forms;
 using Button = System.Windows.Controls.Button;
 using MessageBox = System.Windows.MessageBox;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace LibraryWPF
 {
@@ -32,26 +33,16 @@ namespace LibraryWPF
         private readonly PaletteHelper palette = new PaletteHelper();
 
         private readonly LibraryContext dbContext = new();
+        private string email;
 
-        public MainWindow()
+        public MainWindow(string e)
         {
             InitializeComponent();
             var theme = palette.GetTheme();
             theme.SetPrimaryColor(System.Windows.Media.Color.FromArgb(255, 125, 10, 10));
             palette.SetTheme(theme);
-
-            //string imagePath = @"C:\Users\PC\Desktop\book.jpg";
-
-            //byte[] imageBytes = ImageToByteArray(imagePath);
-
-
+            email = e;
             dbContext.Database.EnsureCreated();
-
-            //Book book = new() { Title = "title22", Genre = "gerneee", Image = imageBytes, Available = true };
-            //dbContext.Books.Add(book);
-            //dbContext.SaveChanges();
-
-
 
             refreshBooks();
 
@@ -59,8 +50,6 @@ namespace LibraryWPF
 
             refreshRes();
             
-
-            logger.Error("HI");
         }
 
         private void refreshusers()
@@ -110,6 +99,7 @@ namespace LibraryWPF
                         {
                             booktoupdate.ImageData = bk.ImageData;
                         }
+                        logger.Info($"{email} edited {booktoupdate.Title}");
                         dbContext.SaveChanges();
                         MessageBox.Show("Edited");
                         refreshBooks();
@@ -129,6 +119,7 @@ namespace LibraryWPF
                 var booktodelete = dbContext.books.Find(book.Id);
                 if (booktodelete != null)
                 {
+                    logger.Info($"{email} deleted {booktodelete.Title}");
                     dbContext.books.Remove(booktodelete);
                     dbContext.SaveChanges();
                     MessageBox.Show("Book deleted");
@@ -152,6 +143,7 @@ namespace LibraryWPF
             int res = dbContext.SaveChanges();
             if (res == 1)
             {
+                logger.Info($"{email} added {book.Title}");
                 MessageBox.Show("Book added", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
                 refreshBooks();
             }
@@ -180,6 +172,7 @@ namespace LibraryWPF
                 usertoupdate.LastName = us.LastName;
                 usertoupdate.Email = us.Email;
                 usertoupdate.IsAdmin = us.IsAdmin;
+                logger.Info($"{email} edited {usertoupdate.Email}");
                 dbContext.SaveChanges();
                 MessageBox.Show("User Edited");
                 refreshusers();
@@ -194,8 +187,11 @@ namespace LibraryWPF
             DeleteUser du = new DeleteUser(user); du.ShowDialog();
             if (du.getres())
             {
+                logger.Info($"{email} edited {user.Email}");
                 dbContext.users.Remove(user);
                 dbContext.SaveChanges();
+                MessageBox.Show("User Deleted");
+                refreshusers();
             }
         }
 
@@ -205,12 +201,44 @@ namespace LibraryWPF
             Reservation res = (Reservation)btn.DataContext;
             Editres er = new(res);
             er.ShowDialog();
+            if(er.edited)
+            {
+                Reservation re = er.getRes();
+                if(re == null)
+                {
+                    MessageBox.Show("Error");
+                    return;
+                }
+                var restoupdate = dbContext.reservations.Find(res.Id);
+                if (restoupdate != null)
+                {
+                    restoupdate.BookId = re.BookId;
+                    restoupdate.UserId = re.UserId;
+                    restoupdate.Duration = re.Duration;
+                    restoupdate.Date = re.Date;
+                    dbContext.SaveChanges();
+                    logger.Info($"{email} edited {res.Id} reservation");
+                    MessageBox.Show("Reservation edited");
+                    refreshRes();
+                    return;
+                }
+            }
             
         }
 
         private void Deleteres(object sender, RoutedEventArgs e)
         {
-
+            Button btn = (Button)sender;
+            Reservation res = (Reservation)btn.DataContext;
+            Deleteres dr = new(res);
+            dr.ShowDialog();
+            if (dr.getres())
+            {
+                dbContext.reservations.Remove(res);
+                dbContext.SaveChanges();
+                MessageBox.Show("Reservation Deleted");
+                refreshRes();
+            }
         }
 
         private void exportcsv_Click(object sender, RoutedEventArgs e)
