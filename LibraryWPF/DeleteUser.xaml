@@ -1,14 +1,13 @@
-﻿<Window x:Class="LibraryWPF.DeleteDialog"
+﻿<Window x:Class="LibraryWPF.DeleteUser"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:local="clr-namespace:LibraryWPF"
         mc:Ignorable="d"
-        Title="DeleteDialog" Height="223" Width="428">
+        Title="DeleteUser" Height="223" Width="428">
     <Grid Height="213" VerticalAlignment="Bottom" HorizontalAlignment="Center" Width="428" Margin="0,0,0,-6">
-        <TextBlock x:Name="titletxt" FontSize="20" Margin="27,64,0,83"><Run Language="en-gb"/></TextBlock>
+        <TextBlock x:Name="titletxt" FontSize="15" Margin="27,64,0,83"><Run Language="en-gb"/></TextBlock>
         <Button x:Name="yes" Click="yes_Click" Margin="75,145,241,36">Yes</Button>
         <Button x:Name="no" Click="no_Click" Margin="259,145,57,36">No</Button>
     </Grid>

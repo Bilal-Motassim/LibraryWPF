@@ -13,18 +13,26 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Net.Mime.MediaTypeNames;
+using OpenFileDialog = System.Windows.Forms.OpenFileDialog;
 
 namespace LibraryWPF
 {
     /// <summary>
-    /// Interaction logic for Addbook.xaml
+    /// Interaction logic for Editbook.xaml
     /// </summary>
-    public partial class Addbook : Window
+    public partial class Editbook : Window
     {
         private string selectedpath;
-        public Addbook()
+        private int id;
+        public bool edited = false;
+        public Editbook(Book bk)
         {
             InitializeComponent();
+            title.Text = bk.Title;
+            genre.Text = bk.Genre;
+            description.Text = bk.Description;
+            id = bk.Id;
         }
 
         private void selectimagepath_Click(object sender, RoutedEventArgs e)
@@ -43,18 +51,27 @@ namespace LibraryWPF
             }
         }
 
-        private void addbooktxt_Click(object sender, RoutedEventArgs e)
+        private void editbooktxt_Click(object sender, RoutedEventArgs e)
         {
+            edited = true;
             this.Close();
         }
 
         public Book getBook()
         {
-            if(selectedpath == null || title.Text == null || genre.Text == null || description.Text == null)
+            if(string.IsNullOrEmpty(title.Text) || string.IsNullOrEmpty(genre.Text) || string.IsNullOrEmpty(description.Text))
             {
                 return null;
             }
-            return new Book() { Title = title.Text, Genre = genre.Text, Description = description.Text, ImageData = ImageToByteArray(selectedpath) };
+            if (selectedpath != null)
+            {
+                return new Book { Id = id, Title = title.Text, Genre = genre.Text, Description = description.Text, ImageData = ImageToByteArray(selectedpath) };
+            }
+            else
+            {
+                return new Book { Id = id, Title = title.Text, Genre = genre.Text, Description = description.Text };
+            }
+
         }
 
         static byte[] ImageToByteArray(string imagePath)

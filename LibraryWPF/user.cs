@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LibraryWPF
 {
-    internal class User
+    public class User
     {
         [Key]
         [Required]
@@ -32,5 +32,9 @@ namespace LibraryWPF
         public string Password { get; set; }
 
         public bool IsAdmin { get; set; } = false;
+
+
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiration { get; set; }
     }
 }

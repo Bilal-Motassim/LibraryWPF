@@ -15,17 +15,18 @@ using System.Windows.Shapes;
 namespace LibraryWPF
 {
     /// <summary>
-    /// Interaction logic for DeleteDialog.xaml
+    /// Interaction logic for DeleteUser.xaml
     /// </summary>
-    public partial class DeleteDialog : Window
+    public partial class DeleteUser : Window
     {
+        private string fn;
+        private string ln;
         private bool res = false;
-        private string title;
-        public DeleteDialog(string title)
+        public DeleteUser(User us)
         {
             InitializeComponent();
-            this.title = title;
-            titletxt.Text = $"Are you sure you want to delete {title} ?";
+            fn = us.FirstName; ln = us.LastName;
+            titletxt.Text = $"Are you sure you want to delete {fn} {ln}?";
         }
 
         private void yes_Click(object sender, RoutedEventArgs e)

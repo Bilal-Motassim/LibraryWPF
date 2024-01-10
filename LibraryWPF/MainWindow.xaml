@@ -29,46 +29,51 @@
                                 Kind="Account" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="Accounts" />
+                                Text="Accounts" FontSize="12"/>
                         </StackPanel>
                     </TabItem.Header>
-                    <DataGrid x:Name="griduserss" SelectionMode="Extended" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="Password" Binding="{Binding Password}" IsReadOnly="True"/>
-                            <DataGridTextColumn Header="isAdmin" Binding="{Binding IsAdmin}" IsReadOnly="True"/>
-                            <DataGridTemplateColumn Header="Action">
-                                <DataGridTemplateColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <StackPanel Orientation="Horizontal" Margin="20">
-                                            <Button
+                    <StackPanel>
+                        <Button Margin="0 5 700 5" x:Name="exportcsv" Width="56" Click="exportcsv_Click">
+                            <materialDesign:PackIcon Kind="ExportVariant" />
+                        </Button>
+                        <DataGrid x:Name="griduserss" VerticalScrollBarVisibility="Auto" SelectionMode="Extended" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="First name" Binding="{Binding FirstName}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Last name" Binding="{Binding LastName}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="Email" Binding="{Binding Email}" IsReadOnly="True"/>
+                                <DataGridTextColumn Header="isAdmin" Binding="{Binding IsAdmin}" IsReadOnly="True"/>
+                                <DataGridTemplateColumn Header="Action">
+                                    <DataGridTemplateColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="20">
+                                                <Button
    
-              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-              Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-              ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-                Margin="0 0 10 0 " Click="Edituser">
-                                                <materialDesign:PackIcon Kind="TextBoxEdit"/>
-                                            </Button>
-                                            <Button
-          IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
-          Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
-          ToolTip="MaterialDesignFloatingActionMiniDarkButton"
-          Click="Deleteuser">
-                                                <materialDesign:PackIcon Kind="Delete" />
-                                            </Button>
-                                        </StackPanel>
-                                    </DataTemplate>
-                                </DataGridTemplateColumn.CellTemplate>
-                            </DataGridTemplateColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    
-                    
-                    
-                    
+    IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+    Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+    ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+      Margin="0 0 10 0 " Click="Edituser">
+                                                    <materialDesign:PackIcon Kind="TextBoxEdit"/>
+                                                </Button>
+                                                <Button
+IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+Click="Deleteuser">
+                                                    <materialDesign:PackIcon Kind="Delete" />
+                                                </Button>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </DataGridTemplateColumn.CellTemplate>
+                                </DataGridTemplateColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+
+
+
+
+
                 </TabItem>
                 <TabItem>
                     <TabItem.Header>
@@ -82,7 +87,7 @@
                                 Kind="Book" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="Books" />
+                                Text="Books" FontSize="12"/>
                         </StackPanel>
                     </TabItem.Header>
 
@@ -92,12 +97,12 @@
 
 
 
-                   
-                        
-                        
-                        
-                        
-      
+
+
+
+
+
+
                     <StackPanel Orientation="Vertical">
                         <Button x:Name="addBook" Margin="600 5 0 5" Width="112" Height="36" Click="addBook_Click">
                             <StackPanel Orientation="Horizontal">
@@ -111,7 +116,7 @@
                                 <DataGridTemplateColumn Header="Image" Width="100" IsReadOnly="True">
                                     <DataGridTemplateColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Image Source="{Binding Image}" />
+                                            <Image Source="{Binding ImageData}" />
                                         </DataTemplate>
                                     </DataGridTemplateColumn.CellTemplate>
                                 </DataGridTemplateColumn>
@@ -163,15 +168,41 @@
                                 Kind="FileDocument" />
                             <TextBlock
                                 HorizontalAlignment="Center"
-                                Text="Reservations" />
+                                Text="Reservations" FontSize="12" />
                         </StackPanel>
                     </TabItem.Header>
-                    <TextBlock>
-        <Run
-          Text="tab 3 content. Default look and behaviors." />
-        <LineBreak />
-        <LineBreak />
-                    </TextBlock>
+                    <DataGrid x:Name="gridres" SelectionMode="Extended" SelectionUnit="FullRow" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="ID" Binding="{Binding Id}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="User" Binding="{Binding user.FirstName}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Book" Binding="{Binding book.Title}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Date" Binding="{Binding Date}" IsReadOnly="True"/>
+                            <DataGridTextColumn Header="Duration" Binding="{Binding Duration}" IsReadOnly="True"/>
+                            <DataGridTemplateColumn Header="Action">
+                                <DataGridTemplateColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal" Margin="20">
+                                            <Button
+   
+                              IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                              Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                              ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+                                Margin="0 0 10 0 " Click="Editeres">
+                                                <materialDesign:PackIcon Kind="TextBoxEdit"/>
+                                            </Button>
+                                            <Button
+                                  IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Window}, Mode=FindAncestor}}"
+                                  Style="{StaticResource MaterialDesignFloatingActionMiniDarkButton}"
+                                  ToolTip="MaterialDesignFloatingActionMiniDarkButton"
+                                  Click="Deleteres">
+                                                <materialDesign:PackIcon Kind="Delete" />
+                                            </Button>
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </DataGridTemplateColumn.CellTemplate>
+                            </DataGridTemplateColumn>
+                        </DataGrid.Columns>
+                    </DataGrid>
                 </TabItem>
             </TabControl>
         </materialDesign:Card>

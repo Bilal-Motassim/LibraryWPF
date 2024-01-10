@@ -9,8 +9,9 @@ namespace LibraryWPF
 {
     internal class LibraryContext : DbContext
     {
-        public DbSet<Book> Books { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<Book> books { get; set; }
+        public DbSet<User> users { get; set; }
+        public DbSet<Reservation> reservations { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

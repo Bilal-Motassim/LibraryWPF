@@ -23,13 +23,16 @@ namespace LibraryWPF
         [Required]
         public string Genre { get; set; }
 
-        public bool Available { get; set; } = true;
+        public string Available { get; set; } = "YES";
 
         [Required]
-        public byte[] Image { get; set; }
+        public byte[] ImageData { get; set; }
 
         [Required]
         public string Description { get; set; }
+
+        [Required]
+        public bool IsFavorite {  get; set; }
 
     }
 }
